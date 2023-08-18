@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @Controller
@@ -15,13 +19,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     private final MemberRepository memberRepository;
 
-//    @GetMapping("/")
+    //    @GetMapping("/")
     public String home() {
         return "home";
     }
 
     @GetMapping("/")
-    public String homeLogin(@CookieValue(name = "memberId", required = false) Long memberId, Model model){
+    public String homeLogin(@CookieValue(name = "memberId", required = false) Long memberId, Model model) {
 
         if (memberId == null) {
             return "home";
