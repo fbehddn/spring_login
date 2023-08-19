@@ -41,17 +41,12 @@ public class SessionManager {
      * 세션 조회
      */
     public Object getSession(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies == null) {
+        Cookie sessionCookie = findCoockie(request, SESSION_COOKIE_NAME);
+        if (sessionCookie == null) {
             return null;
         }
 
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals(SESSION_COOKIE_NAME)) {
-                return sessionStore.get(cookie.getValue());
-            }
-        }
-        return null;
+        return sessionStore.get(sessionCookie.getValue());
     }
 
     public Cookie findCoockie(HttpServletRequest request, String cookieName) {
