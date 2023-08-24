@@ -43,7 +43,7 @@ public class LogInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
         String logId = (String) request.getAttribute(LOG_ID);
 
-        log.info("REQUEST [{}] [{}] [{}]", logId, requestURI, handler);
+        log.info("RESPONSE [{}] [{}]", logId, requestURI);
 
         if (ex != null) {
             log.error("afterCompletion error!!",ex);
